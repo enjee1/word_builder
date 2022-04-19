@@ -8,7 +8,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Entry {
 
-    class Meta{
+    private Meta metaData;
+    private String partOfSpeech;
+    private String[] shortDef;
+    public Meta getMetaData() {
+        return metaData;
+    }
+
+    // The below annotation is used to change the default key name when serializing JSON from the external API.
+    @JsonProperty("meta")
+    public void setMetaData(Meta metaData) {
+        this.metaData = metaData;
+    }
+    public String getPartOfSpeech() {
+        return partOfSpeech;
+    }
+
+    // The below annotation is used to change the default key name when serializing JSON from the external API.
+    @JsonProperty("fl")
+    public void setPartOfSpeech(String partOfSpeech) {
+        this.partOfSpeech = partOfSpeech;
+    }
+    public String[] getShortDef() {
+        return shortDef;
+    }
+
+    // The below annotation is used to change the default key name when serializing JSON from the external API.
+    @JsonProperty("shortdef")
+    public void setShortDef(String[] shortDef) {
+        this.shortDef = shortDef;
+    }
+
+    public static class Meta{
         private String id;
         private String uuid;
         private String source;
@@ -17,9 +48,6 @@ public class Entry {
         private String[][] synonyms;
         //This field is only populated when the entry is from the thesaurus
         private String[][] antonyms;
-
-
-        public Meta() {}
 
         public String getId() {
             return id;
@@ -73,40 +101,5 @@ public class Entry {
             this.antonyms = antonyms;
         }
     }
-
-    private Meta metaData;
-    private String partOfSpeech;
-    private String[] shortDef;
-
-    public Meta getMetaData() {
-        return metaData;
-    }
-
-    // The below annotation is used to change the default key name when serializing JSON from the external API.
-    @JsonProperty("meta")
-    public void setMetaData(Meta metaData) {
-        this.metaData = metaData;
-    }
-
-    public String getPartOfSpeech() {
-        return partOfSpeech;
-    }
-
-    // The below annotation is used to change the default key name when serializing JSON from the external API.
-    @JsonProperty("fl")
-    public void setPartOfSpeech(String partOfSpeech) {
-        this.partOfSpeech = partOfSpeech;
-    }
-
-    public String[] getShortDef() {
-        return shortDef;
-    }
-
-    // The below annotation is used to change the default key name when serializing JSON from the external API.
-    @JsonProperty("shortdef")
-    public void setShortDef(String[] shortDef) {
-        this.shortDef = shortDef;
-    }
-
 
 }
